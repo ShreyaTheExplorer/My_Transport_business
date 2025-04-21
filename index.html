@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transport Service Form</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    form { display: flex; flex-direction: column; width: 300px; }
+    label, select, input { margin-bottom: 15px; }
+    button { padding: 10px; background-color: #4CAF50; color: white; border: none; }
+  </style>
+</head>
+<body>
+  <h2>Transport Booking Form</h2>
+  <form id="myForm">
+    <label>From Location:</label>
+    <select name="from" required>
+      <option value="Pune">Pune</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="thane">thane</option>
+      <option value="palghar">palghar</option>
+      <option value="Gujrat">Gujrat</option>
+      <option value="Konkan:mahad,lote,Roha,Chiplun,Ratnagiri">Konkan:mahad,lote,Roha,Chiplun,Ratnagiri</option>
+      <option value="Different">Different</option>
+      <!-- Add more locations -->
+    </select>
+
+    <label>To Location:</label>
+    <select name="to" required>
+            <option value="Pune">Pune</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="thane">thane</option>
+            <option value="palghar">palghar</option>
+            <option value="Gujrat">Gujrat</option>
+            <option value="Konkan:mahad,lote,Roha,Chiplun,Ratnagiri">Konkan:mahad,lote,Roha,Chiplun,Ratnagiri</option>
+            <option value="Different">Different</option>
+      <!-- Add more destinations -->
+    </select>
+    <label>Day of Trip:</label>
+    <select name="Vehicle" required>
+            <option value="आज">आज</option>
+            <option value="कल">कल</option>
+            <option value="परसो">परसो</option>
+        </select>
+
+    <label>Contact Number:</label>
+    <input type="tel" name="contact" required pattern="[0-9]{10}" placeholder="e.g., 9876543210">
+
+    <label>Vehicle Type:</label>
+    <select name="vehicle" required>
+      <option value="Jeep">Jeep</option>
+      <option value="Open Trailer 40 ft">Open Trailer 40 ft</option>
+      <option value="ODC">ODC</option>
+      <option value="Container">Container</option>
+      <!-- Add more vehicles -->
+    </select>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzxZ2lAJfoUBJJT8K6QraW8GtsqgcTAog0WgIoUnySMTTD6fukfKPT-NNR9LExZ7QA/exec'
+    ;
+    const form = document.getElementById('myForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => alert('Form submitted successfully!'))
+      .catch(error => alert('Error!', error.message));
+    });
+  </script>
+</body>
+</html>
